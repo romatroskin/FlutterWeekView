@@ -52,13 +52,14 @@ class EventGrid {
   /// Sets the left and right positions for each event in the connected group.
   void packEvents(List<List<EventDrawProperties>> columns,
       double hoursColumnWidth, double eventsColumnWidth) {
+        final width = eventsColumnWidth;
     for (int columnIndex = 0; columnIndex < columns.length; columnIndex++) {
       List<EventDrawProperties> column = columns[columnIndex];
       for (EventDrawProperties drawProperties in column) {
         drawProperties.left = hoursColumnWidth +
-            (columnIndex / columns.length) * eventsColumnWidth;
+            (columnIndex / columns.length) * width;
         int colSpan = calculateColSpan(columns, drawProperties, columnIndex);
-        drawProperties.width = (eventsColumnWidth * colSpan) / (columns.length);
+        drawProperties.width = (width * colSpan) / (columns.length);
       }
     }
   }
